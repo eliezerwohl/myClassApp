@@ -10,6 +10,10 @@ router.get('/register', function(req,res) {
   res.render("register");
 });
 
+router.post('/register', function(req,res) {
+  res.send(req.body.email);
+});
+
 router.get('/students', function(req,res) {
   res.render("students");
 });
