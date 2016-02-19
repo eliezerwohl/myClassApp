@@ -1,0 +1,22 @@
+var express = require("express");
+var app = express();
+var PORT = 8080;
+
+var expressHandlebars = require("express-handlebars")
+app.engine('handlebars', expressHandlebars({
+    defaultLayout: 'main'
+}));
+app.set('view engine', 'handlebars');
+
+var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// var routes = require('./controllers/classController.js');
+// app.use('/', routes);
+
+
+// sequelize.sync().then(function(){
+  app.listen(PORT, function() {
+    console.log("Listening on port %s", PORT);
+  })
+// });
