@@ -13,7 +13,9 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 var routes = require('./controllers/classController.js');
 app.use('/', routes);
-
+app.use('/register', routes);
+app.use('/students', routes);
+app.use('/students', routes);
 
 // sequelize.sync().then(function(){
   app.listen(PORT, function() {
