@@ -11,8 +11,8 @@ app.set('view engine', 'handlebars');
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }))
 
-// var routes = require('./controllers/classController.js');
-// app.use('/', routes);
+var routes = require('./controllers/classController.js');
+app.use('/', routes);
 
 
 // sequelize.sync().then(function(){
