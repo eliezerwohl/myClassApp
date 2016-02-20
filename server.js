@@ -15,10 +15,10 @@ var routes = require('./controllers/classController.js');
 app.use('/', routes);
 app.use('/register', routes);
 app.use('/students', routes);
-app.use('/students', routes);
+app.use('/saveRegister', routes);
 
 // sequelize.sync().then(function(){
-//   app.listen(PORT, function() {
-//     console.log("Listening on port %s", PORT);
-//   })
+  app.listen(PORT, function() {
+    console.log("Listening on port %s", PORT);
+  })
 // });

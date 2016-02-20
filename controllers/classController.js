@@ -45,8 +45,13 @@ router.get('/register', function(req,res) {
   res.render("register");
 });
 
-router.post('/register', function(req,res) {
-  res.render("index", req.body);
+router.post('/saveRegister', function(req,res) {
+  User.create(req.body).then(function(result){
+    res.redirect('/?msg=Account created');
+  }).catch(function(err) {
+    console.log(err);
+    res.redirect('/?msg=' + err.errors[0].message);
+  });
 });
 
 router.get('/students', function(req,res) {
@@ -59,8 +64,3 @@ router.get('/instructors', function(req,res) {
 
 module.exports = router;
 
-// sequelize.sync().then(function(){
-  app.listen(PORT, function() {
-    console.log("Listening on port %s", PORT);
-  })
-// });
