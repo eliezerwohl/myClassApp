@@ -23,8 +23,33 @@ var User = sequelize.define('User', {
     }
   }
 });
-var passport = require('passport');
-var passportLocal = require('passport-local');
+// var passport = require('passport');
+// var passportLocal = require('passport-local');
+// passport.use(new passportLocal.Strategy(function(email, password, done) {
+//     //check password in db
+//     User.findOne({
+//         where: {
+//             email: email
+//         }
+//     }).then(function(user) {
+//         //check password against hash
+//         if(user){
+//             bcrypt.compare(password, user.dataValues.password, function(err, user) {
+//                 if (user) {
+//                   //if password is correct authenticate the user with cookie
+//                   done(null, { id: email, email: email });
+//                 } else{
+//                   done(null, null);
+//                 }
+//             });
+//         } else {
+//             done(null, null);
+//         }
+//     });
+
+// }));
+
+
 //middleware init
 app.use(require('express-session')({
     secret: 'eekamouse',
@@ -32,8 +57,37 @@ app.use(require('express-session')({
     saveUninitialized: true,
     cookie : { secure : false, maxAge : (4 * 60 * 60 * 1000) }, // 4 hours
 }));
-app.use(passport.initialize());
-app.use(passport.session());
+
+
+var checkUser = function(email, password){
+  User.findOne({
+    where: {
+      email: email,
+    }
+  }).then(function(results){
+    bcrypt.compare(password, results.dataValues.password, function(err, results){
+      console.log("Results are " + results);
+      if(results){
+       
+        console.log("Successfully logged in!");
+        res.redirect("/loggedIn");
+      } else {
+        console.log("Your login credentials do not work");
+      }
+    })
+  }).catch(function(err){
+    console.log("Database error");
+  })
+}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -54,8 +108,31 @@ router.post('/saveRegister', function(req,res) {
   });
 });
 
-router.post('/signIn', function(req,res) {
- 
+router.post('/signIn', function(req, res){
+  var email= req.body.email;
+  var password = req.body.password;
+  var checkUser = function(email, password){
+    console.log ("function works")
+  User.findOne({
+    where: {
+      email: email,
+    }
+  }).then(function(results){
+    bcrypt.compare(password, results.dataValues.password, function(err, results){
+      console.log("Results are " + results);
+      if(results){
+       
+        console.log("Successfully logged in!");
+        res.redirect("/loggedIn");
+      } else {
+        console.log("Your login credentials do not work");
+      }
+    })
+  }).catch(function(err){
+    console.log("Database error");
+  })
+}
+  checkUser(email, password)
 });
 
 router.get('/loggedIn', function(req,res) {
