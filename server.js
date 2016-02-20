@@ -16,6 +16,9 @@ app.use('/', routes);
 app.use('/register', routes);
 app.use('/students', routes);
 app.use('/saveRegister', routes);
+app.use('/signIn', routes);
+app.use('/loggedIn', routes);
+
 
 // sequelize.sync().then(function(){
   app.listen(PORT, function() {
