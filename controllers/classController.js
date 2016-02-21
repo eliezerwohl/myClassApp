@@ -30,10 +30,11 @@ var Students = sequelize.define('Students', {
 
 var Teachers = sequelize.define('Teachers', {
   firstName: Sequelize.STRING,
-  lastName:Sequelize.STRING
+  lastName:Sequelize.STRING,
+  ta:Sequelize.BOOLEAN
 });
 
-Students.hasMany(Teachers);
+Teachers.hasMany(Students);
 
 //middleware init
 app.use(require('express-session')({
