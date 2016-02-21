@@ -20,8 +20,8 @@ app.use('/signIn', routes);
 app.use('/loggedIn', routes);
 
 
-// sequelize.sync().then(function(){
-  app.listen(PORT, function() {
-    console.log("Listening on port %s", PORT);
-  })
-// });
+// // sequelize.sync().then(function(){
+//   app.listen(PORT, function() {
+//     console.log("Listening on port %s", PORT);
+//   })
+// // });
