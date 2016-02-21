@@ -23,32 +23,17 @@ var User = sequelize.define('User', {
     }
   }
 });
-// var passport = require('passport');
-// var passportLocal = require('passport-local');
-// passport.use(new passportLocal.Strategy(function(email, password, done) {
-//     //check password in db
-//     User.findOne({
-//         where: {
-//             email: email
-//         }
-//     }).then(function(user) {
-//         //check password against hash
-//         if(user){
-//             bcrypt.compare(password, user.dataValues.password, function(err, user) {
-//                 if (user) {
-//                   //if password is correct authenticate the user with cookie
-//                   done(null, { id: email, email: email });
-//                 } else{
-//                   done(null, null);
-//                 }
-//             });
-//         } else {
-//             done(null, null);
-//         }
-//     });
+var Students = sequelize.define('Students', {
+  firstname: Sequelize.STRING,
+  lastname: Sequelize.STRING
+});
 
-// }));
+var Teachers = sequelize.define('Teachers', {
+  firstName: Sequelize.STRING,
+  lastName:Sequelize.STRING
+});
 
+Students.hasMany(Teachers);
 
 //middleware init
 app.use(require('express-session')({
@@ -80,17 +65,6 @@ var checkUser = function(email, password){
   })
 }
 
-
-
-
-
-
-
-
-
-
-
-
 router.get('/', function(req,res) {
   res.render("index");
 });
@@ -112,7 +86,6 @@ router.post('/signIn', function(req, res){
   var email= req.body.email;
   var password = req.body.password;
   var checkUser = function(email, password){
-    console.log ("function works")
   User.findOne({
     where: {
       email: email,
@@ -150,3 +123,8 @@ router.get('/instructors', function(req,res) {
 
 module.exports = router;
 
+sequelize.sync().then(function(){
+  app.listen(PORT, function() {
+    console.log("Listening on port %s", PORT);
+  })
+});
