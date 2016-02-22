@@ -1,1 +1,7 @@
-this is the students page
+    {{#each Teachers}}
+      <div>
+        <h2>{{firstName}} {{lastName}}</h2>
+          {{#each Students}}
+            <li>{{firstname}}</li>
+          {{/each}}
+          {{/each}}

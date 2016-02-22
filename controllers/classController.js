@@ -30,10 +30,11 @@ var Students = sequelize.define('Students', {
 
 var Teachers = sequelize.define('Teachers', {
   firstName: Sequelize.STRING,
-  lastName:Sequelize.STRING
+  lastName:Sequelize.STRING,
+  ta:Sequelize.BOOLEAN
 });
 
-Students.hasMany(Teachers);
+Teachers.hasMany(Students);
 
 //middleware init
 app.use(require('express-session')({
@@ -114,8 +115,17 @@ router.get('/loggedIn', function(req,res) {
 
 
 router.get('/students', function(req,res) {
-  res.render("students");
+  Teachers.findAll({
+    include: [{
+      model: Students
+    }]
+  }).then(function(Teachers) {
+    res.render('students', {
+      Teachers: Teachers
+    })
+  });
 });
+
 
 router.get('/instructors', function(req,res) {
   res.render("instructors");
@@ -123,8 +133,8 @@ router.get('/instructors', function(req,res) {
 
 module.exports = router;
 
-sequelize.sync().then(function(){
-  app.listen(PORT, function() {
-    console.log("Listening on port %s", PORT);
-  })
-});
+// sequelize.sync().then(function(){
+//   app.listen(PORT, function() {
+//     console.log("Listening on port %s", PORT);
+//   })
+// });
