@@ -1,57 +1,14 @@
-   
-<!-- 
-    {{#each students}}
-      <div>
-        <h2>This Is the teacher's name {{firstName}} {{lastName}}</h2>
-
-        <h4> students in class </h4>
-           {{#each Students}}
-            <li> {{firstName}}</li>
-          {{/each}}
-
-              {{#each TA}}
-           <div> name of the ta{{firstName}}<div>
-          {{/each}}
 
 
-          {{/each}}
- -->  assigned students
-       {{#each students}}
-   
-        {{#if this.TeacherId}}
-        <span>{{this.firstName}} </span>
-      </div>
-   {{/if}}
+          <form method="POST" action="/studentAdd">
   
-   {{/each}}
-
-   <h3> This are the unassgined students </h3>
-    {{#each students}}
-
-    {{#unless this.TeacherId}} 
-  
-      <form action="/teacherPick" method ="post">
-       <h5>{{this.firstName}}</h5>
-
       <div class="form-group">
-        <label for="exampleInputPassword1">Teacher Name</label>
+        <label for="exampleInputPassword1">First Name</label>
         <input type="text" class="form-control" id="exampleInputPassword1" name="firstName">
+      </div>
+       <div class="form-group">
+        <label for="exampleInputPassword1">Teacher id</label>
+        <input type="text" class="form-control" id="exampleInputPassword1" name="TeacherId">
       </div>
        <button type="submit">Assign!</button>
     </form>
-        
-   {{/unless}}
-     {{/each}}
-            
-
-
-<!--       {{#each students}}
-      {{#unless this.teacherId}}
-      <div style="border:1px solid gray;">
-        <h5>{{this.burgerName}}</h5>
-        <form method="post" action="/devour/{{this.burgerName}}"">
-          <button type="submit" class="btn btn-default">CONSUME THIS BURGER!</button>
-        </form> 
-      </div>
-   {{/unless}}
-   {{/each}} -->

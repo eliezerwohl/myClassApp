@@ -1,5 +1,5 @@
 
-
+<!-- 
           <form method="POST" action="/studentAdd">
   
       <div class="form-group">
@@ -11,4 +11,20 @@
         <input type="text" class="form-control" id="exampleInputPassword1" name="TeacherId">
       </div>
        <button type="submit">Assign!</button>
-    </form>
+    </form> -->
+
+        {{#each Teachers}}
+      <div>
+        <h2>This Is the teacher's name {{firstName}} {{lastName}}</h2>
+
+        <h4> students in class </h4>
+           {{#each Students}}
+            <li> {{firstName}}</li>
+          {{/each}}
+
+              {{#each TA}}
+           <div> name of the ta{{firstName}}<div>
+          {{/each}}
+
+
+          {{/each}}

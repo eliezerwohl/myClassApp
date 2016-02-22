@@ -158,13 +158,11 @@ router.post('/teacherPick', function(req, res) {
 
 
 router.get('/instructors', function(req,res) {
-  Students.findAll().then(function(students) {
 
-    res.render('instructors', {
-      students: students
-    })
+
+    res.render('instructors')
+   
   });
-});
 
 module.exports = router;
 
