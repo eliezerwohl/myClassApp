@@ -142,14 +142,15 @@ router.post('/studentAdd', function(req, res) {
   });
 });
 
-router.get('/teacherPick', function(req, res) {
-  
+router.post('/teacherPick', function(req, res) {
+  console.log(req.body)
+  res.send("why not?")
 
  Students.update(
   // Set Attribute values 
-        { TeacherId: 1 },
+        { TeacherId: req.body.firstName },
   // Where clause / criteria 
-        {where:{firstName:'sally wally'}} 
+        {where:{firstName:'leftover crack'}} 
  ).then(function() {
     res.redirect('/students');
   });
