@@ -1,7 +1,14 @@
+   
+
     {{#each Teachers}}
       <div>
-        <h2>{{firstName}} {{lastName}}</h2>
-          {{#each Students}}
-            <li>{{firstname}}</li>
+        <h2>This Is the teacher's name {{firstName}} {{lastName}}</h2>
+
+           {{#each Students}}
+            <li> this is the students name {{firstName}}</li>
+          {{/each}}
+
+              {{#each TA}}
+           <div> name of the ta{{firstName}}<div>
           {{/each}}
           {{/each}}
