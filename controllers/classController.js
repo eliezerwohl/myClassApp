@@ -24,17 +24,25 @@ var User = sequelize.define('User', {
   }
 });
 var Students = sequelize.define('Students', {
-  firstname: Sequelize.STRING,
-  lastname: Sequelize.STRING
+  firstName: Sequelize.STRING,
+  // lastname: Sequelize.STRING
 });
 
 var Teachers = sequelize.define('Teachers', {
   firstName: Sequelize.STRING,
-  lastName:Sequelize.STRING,
-  ta:Sequelize.BOOLEAN
+  // lastName:Sequelize.STRING,
+  // ta:Sequelize.BOOLEAN
+});
+
+var TA = sequelize.define('TA', {
+  firstName: Sequelize.STRING,
+  // lastName:Sequelize.STRING,
+  // ta:Sequelize.BOOLEAN
 });
 
 Teachers.hasMany(Students);
+Teachers.hasMany(TA);
+
 
 //middleware init
 app.use(require('express-session')({
@@ -116,10 +124,12 @@ router.get('/loggedIn', function(req,res) {
 
 router.get('/students', function(req,res) {
   Teachers.findAll({
-    include: [{
-      model: Students
-    }]
+    include: [
+      {model:Students},
+      {model:TA}
+    ]
   }).then(function(Teachers) {
+    console.log(Teachers)
     res.render('students', {
       Teachers: Teachers
     })
