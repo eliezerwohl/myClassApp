@@ -122,6 +122,7 @@ router.get('/loggedIn', function(req,res) {
 });
 
 
+
 router.get('/students', function(req,res) {
   Teachers.findAll({
     include: [
@@ -129,10 +130,15 @@ router.get('/students', function(req,res) {
       {model:TA}
     ]
   }).then(function(Teachers) {
-    console.log(Teachers)
     res.render('students', {
       Teachers: Teachers
     })
+  });
+});
+
+router.post('/studentAdd', function(req, res) {
+  Students.create(req.body).then(function() {
+    res.redirect('/students');
   });
 });
 

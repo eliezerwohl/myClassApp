@@ -18,6 +18,7 @@ app.use('/students', routes);
 app.use('/saveRegister', routes);
 app.use('/signIn', routes);
 app.use('/loggedIn', routes);
+app.use('/studentAdd', routes);
 
 
 // sequelize.sync().then(function(){
