@@ -1,6 +1,14 @@
     {{#each Teachers}}
+     {{#if this.ta}}
+     <div> this is a ta </div>
+     {{firstName}}
+      {{/if}}
+      {{#unless this.ta}}
+
+
       <div>
         <h2>{{firstName}} {{lastName}}</h2>
+        {{/unless}}
           {{#each Students}}
             <li>{{firstname}}</li>
           {{/each}}
