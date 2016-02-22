@@ -142,6 +142,19 @@ router.post('/studentAdd', function(req, res) {
   });
 });
 
+router.get('/teacherPick', function(req, res) {
+  
+
+ Students.update(
+  // Set Attribute values 
+        { TeacherId: 1 },
+  // Where clause / criteria 
+        {where:{firstName:'sally wally'}} 
+ ).then(function() {
+    res.redirect('/students');
+  });
+});
+
 
 router.get('/instructors', function(req,res) {
   Students.findAll().then(function(students) {
