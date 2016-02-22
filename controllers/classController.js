@@ -144,7 +144,12 @@ router.post('/studentAdd', function(req, res) {
 
 
 router.get('/instructors', function(req,res) {
-  res.render("instructors");
+  Students.findAll().then(function(students) {
+
+    res.render('instructors', {
+      students: students
+    })
+  });
 });
 
 module.exports = router;
