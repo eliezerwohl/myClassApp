@@ -118,7 +118,7 @@ router.post('/signIn', function(req, res){
 });
 
 router.get('/loggedIn', function(req,res) {
-  res.send("You have logged in!  Good for you!");
+  res.render("loggedin");
 });
 
 
