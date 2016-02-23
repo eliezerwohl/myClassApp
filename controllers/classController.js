@@ -3,9 +3,26 @@ var app = express();
 var router = express.Router();
 var bcrypt = require("bcryptjs");
 var PORT = 8080;
-
+var session = require("express-session");
 var Sequelize = require('sequelize');
 var sequelize = new Sequelize('myclassapp', 'root');
+
+app.use(session({
+  secret: 'jerryReed',
+  cookie: {
+    maxAge: 60000
+  },
+  saveUninitialized: true,
+  resave: false
+}));
+
+isAuthenticated = function(req, res, next) {
+  if(req.session.isAuthenticated) {
+    next();
+  } else {
+    res.redirect("/login");
+  }
+}
 
 
 var User = sequelize.define('User', {
@@ -103,7 +120,7 @@ router.post('/signIn', function(req, res){
     bcrypt.compare(password, results.dataValues.password, function(err, results){
       console.log("Results are " + results);
       if(results){
-       
+       req.session.isAuthenticated = true;
         console.log("Successfully logged in!");
         res.redirect("/loggedIn");
       } else {
