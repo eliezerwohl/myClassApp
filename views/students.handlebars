@@ -1,30 +1,29 @@
+<div class="container-fluid">
+  <div class="row-fluid">
 
-<!-- 
-          <form method="POST" action="/studentAdd">
-  
-      <div class="form-group">
-        <label for="exampleInputPassword1">First Name</label>
-        <input type="text" class="form-control" id="exampleInputPassword1" name="firstName">
-      </div>
-       <div class="form-group">
-        <label for="exampleInputPassword1">Teacher id</label>
-        <input type="text" class="form-control" id="exampleInputPassword1" name="TeacherId">
-      </div>
-       <button type="submit">Assign!</button>
-    </form> -->
-
-        {{#each Teachers}}
+    <h2>this is the class structure </h2>
+    {{#each Teachers}}
       <div>
-        <h2>This Is the teacher's name {{firstName}} {{lastName}}</h2>
-
-        <h4> students in class </h4>
-           {{#each Students}}
-            <li> {{firstName}}</li>
-          {{/each}}
-
-              {{#each TA}}
-           <div> name of the ta{{firstName}}<div>
-          {{/each}}
-
-
-          {{/each}}
+        <h2>Teacher's name </h2>
+        {{firstName}} {{lastName}}
+        <br>
+      </div>
+      <div>
+        <h4> Students in class </h4>
+        {{#each Students}}
+          <li> {{firstName}}</li>
+        {{/each}}
+      </div>
+      <div>
+      {{#each TA}}
+        <h5> Name of the TA</h5>
+      {{firstName}}
+      {{/each}}
+    {{/each}}
+      </div>
+      <div>
+      <br>
+      <a href ="/instructors">  <button class = "btn btn-default"> Go to instructors page</button></a>
+    </div>
+  </div>
+</div>
